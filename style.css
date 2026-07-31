@@ -10,7 +10,11 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Clears the sticky header so anchor targets aren't hidden behind it. */
+  scroll-padding-top: 5rem;
+}
 body {
   margin: 0;
   background: var(--paper);
@@ -44,10 +48,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .skip-link:focus { top: 1rem; }
 
+/* Ink reads against both light surfaces — paper and the acid contact section.
+   Dark surfaces flip to acid below. */
 :focus-visible {
-  outline: 3px solid var(--acid);
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
 }
+.site-header :focus-visible,
+.case-study :focus-visible,
+.hscroll :focus-visible { outline-color: var(--acid); }
 
 .loader {
   position: fixed;
@@ -76,6 +85,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   transition: width 0.2s ease, height 0.2s ease;
 }
 .cursor.big { width: 48px; height: 48px; }
+
+/* script.js only drives the custom cursor for fine pointers, so the native
+   pointer must come back on every coarse-pointer device — not just narrow ones. */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor { display: none; }
+}
 
 .site-header {
   position: sticky;
@@ -419,7 +435,6 @@ main { overflow-x: clip; }
 @media (max-width: 980px) {
   .hero-meta { grid-template-columns: 1fr 1fr; }
   .hero-meta span:last-child { text-align: left; }
-  .hero-meta span:nth-child(2) { display: none; }
   .manifesto { grid-template-columns: 1fr; }
   .case-copy { margin-left: 0; }
   .about { grid-template-columns: 1fr; gap: 2rem; }
@@ -428,6 +443,7 @@ main { overflow-x: clip; }
 @media (max-width: 800px) {
   body { cursor: auto; }
   .cursor { display: none; }
+  .hero-meta span:nth-child(2) { display: none; }
   .site-header {
     grid-template-columns: 1fr auto;
     padding-inline: 1rem;

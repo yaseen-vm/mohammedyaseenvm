@@ -23,3 +23,5 @@ python3 -m http.server 8000
 - [site.webmanifest](site.webmanifest) — installable web app metadata
 - [sitemap.xml](sitemap.xml) — search engine discoverability
 - [robots.txt](robots.txt) — crawler instructions
+
+This is an original portfolio implementation inspired by an editorial design direction. It does not include Studio OL's proprietary assets, branding, or copied source code.
