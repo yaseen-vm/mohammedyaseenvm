@@ -1,0 +1,17 @@
+{
+  "name": "Yaseen V M Portfolio",
+  "short_name": "Yaseen",
+  "description": "Portfolio of Yaseen V M, software engineer and system builder.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0efe9",
+  "theme_color": "#161613",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

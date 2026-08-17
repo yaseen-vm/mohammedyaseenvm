@@ -1,25 +1,27 @@
 # Yaseen Editorial Portfolio
 
-A complete responsive personal portfolio UI inspired by high-end editorial studio websites.
+A refined, production-ready portfolio for Yaseen V M, designed as a lightweight static site with a strong editorial feel and a renewed focus on performance, accessibility, and search visibility.
 
-## Run
-Open `index.html` directly in a browser, or use VS Code Live Server.
+## Run locally
+Open [index.html](index.html) directly in a browser, or use a local static server such as:
 
-## Customize
-- Replace `hello@example.com`
-- Replace `#` links for GitHub and LinkedIn
-- Replace Unsplash image URLs with your own project images
-- Edit project titles and case-study copy in `index.html`
+```bash
+python3 -m http.server 8000
+```
 
-## Included
-- Responsive desktop/mobile design
-- Editorial typography and asymmetric layouts
-- Intro loader
-- Custom cursor
-- Image hover interactions
-- Scroll reveal motion
-- Project grid
-- Case study section
-- About and contact sections
+## What changed
+- Refined responsive layout for mobile, tablet, and desktop
+- Stronger focus states, keyboard support, and reduced-motion handling
+- Better content hierarchy, typography, spacing, and project presentation
+- SEO metadata, social sharing tags, favicon, manifest, sitemap, and robots guidance
+- Performance-minded image loading and lighter interaction behavior
+
+## Project files
+- [index.html](index.html) — content structure and metadata
+- [style.css](style.css) — responsive visual system and accessibility styling
+- [script.js](script.js) — navigation, reveal effects, and motion behavior
+- [site.webmanifest](site.webmanifest) — installable web app metadata
+- [sitemap.xml](sitemap.xml) — search engine discoverability
+- [robots.txt](robots.txt) — crawler instructions
 
 This is an original portfolio implementation inspired by an editorial design direction. It does not include Studio OL's proprietary assets, branding, or copied source code.
