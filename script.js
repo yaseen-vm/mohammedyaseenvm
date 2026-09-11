@@ -31,19 +31,22 @@ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches
 if(window.gsap && window.ScrollTrigger && !reduceMotion){
   gsap.registerPlugin(ScrollTrigger);
 
-  // Split an element's text into per-character spans (spaces stay as breakable text nodes).
+  // Split an element's text into per-character spans, grouped into word wrappers so text
+  // still only breaks between words (spaces stay as breakable text nodes).
   const splitChars=(el,extraClass='')=>{
     const text=el.textContent;
     el.textContent='';
+    let word=null;
     for(const ch of text){
-      if(ch===' '){ el.appendChild(document.createTextNode(' ')); continue; }
+      if(ch===' '){ word=null; el.appendChild(document.createTextNode(' ')); continue; }
+      if(!word){ word=document.createElement('span'); word.className='word'; el.appendChild(word); }
       const s=document.createElement('span');
       s.className='char'+(ch==='.'?' dot':'')+(extraClass?' '+extraClass:'');
       s.textContent=ch;
       s.style.display='inline-block';
       s.style.willChange='transform,opacity';
       s.style.transformOrigin='50% 100%';
-      el.appendChild(s);
+      word.appendChild(s);
     }
     return [...el.querySelectorAll('.char')];
   };
