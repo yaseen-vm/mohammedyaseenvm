@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The journey of a single request through the edge, cache, database and AI — a scroll-told story by Mohammed Yaseen V M, Software Engineer (Backend &amp; AI)." />
+  <title>The Journey of a Request — Mohammed Yaseen V M</title>
+  <link rel="stylesheet" href="story.css" />
+</head>
+<body>
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="s-vignette" aria-hidden="true"></div>
+  <div class="s-veil" id="veil" aria-hidden="true"></div>
+
+  <header class="s-head">
+    <a class="s-brand" href="index.html">← Yaseen.</a>
+    <span class="s-count"><b id="s-cur">01</b> / 07</span>
+  </header>
+
+  <aside class="s-rail" id="rail" aria-label="Chapters"></aside>
+  <p class="s-label mono" id="s-label"></p>
+  <p class="s-hint mono" id="s-hint">Scroll ↓</p>
+
+  <main class="s-stage" id="stage">
+    <section class="chap center" data-name="Origin">
+      <div class="chap-in">
+        <p class="eyebrow mono">00 — Origin</p>
+        <h1><span class="ln"><span>One</span></span><span class="ln"><span><em>request.</em></span></span></h1>
+        <p class="lead">A tap on a phone in Kochi. Nothing special. Let’s follow it.</p>
+      </div>
+    </section>
+
+    <section class="chap left" data-name="Edge">
+      <div class="chap-in">
+        <p class="eyebrow mono">01 — Edge</p>
+        <h2><span class="ln"><span>Closer</span></span><span class="ln"><span>than <em>close.</em></span></span></h2>
+        <p class="lead">It lands at the edge first — a Worker a few milliseconds away decides where it should go and whether it should go at all.</p>
+        <p class="metric mono">Cloudflare Workers · D1 · R2</p>
+      </div>
+    </section>
+
+    <section class="chap right" data-name="Cache">
+      <div class="chap-in">
+        <p class="eyebrow mono">02 — Cache</p>
+        <h2><span class="ln"><span>Most answers</span></span><span class="ln"><span>already <em>exist.</em></span></span></h2>
+        <p class="lead">Redis hands the answer back before the database even wakes up. Fast is mostly about not doing the work twice.</p>
+        <p class="metric mono">Redis · graceful DB fallback</p>
+      </div>
+    </section>
+
+    <section class="chap left" data-name="Database">
+      <div class="chap-in">
+        <p class="eyebrow mono">03 — Database</p>
+        <h2><span class="ln"><span>When it must</span></span><span class="ln"><span>go <em>deeper.</em></span></span></h2>
+        <p class="lead">A sharded MySQL cluster split across two Vitess shards, with indexes tuned so even the deep questions stay quick.</p>
+        <p class="metric mono">Vitess · 2 shards · 60+ APIs</p>
+      </div>
+    </section>
+
+    <section class="chap right" data-name="Intelligence">
+      <div class="chap-in">
+        <p class="eyebrow mono">04 — Intelligence</p>
+        <h2><span class="ln"><span>Some questions</span></span><span class="ln"><span>need a <em>mind.</em></span></span></h2>
+        <p class="lead">A RAG pipeline reads the course material, then routes the question to the right model — Nova Micro, Claude Haiku or Sonnet — by the kind of task.</p>
+        <p class="metric mono">AWS Bedrock · RAG · agents</p>
+      </div>
+    </section>
+
+    <section class="chap left" data-name="Response">
+      <div class="chap-in">
+        <p class="eyebrow mono">05 — Response</p>
+        <h2><span class="ln"><span>And back,</span></span><span class="ln"><span>before you <em>blink.</em></span></span></h2>
+        <p class="lead">The answer travels home through every layer, fast enough that nobody notices there was a journey at all.</p>
+        <p class="metric mono">Docker · Terraform · CI/CD</p>
+      </div>
+    </section>
+
+    <section class="chap center end" data-name="Contact">
+      <div class="chap-in">
+        <p class="eyebrow mono">06 — The invisible part</p>
+        <h2><span class="ln"><span>I build the</span></span><span class="ln"><span><em>invisible part.</em></span></span></h2>
+        <p class="lead">Backend systems and AI features that hold up in production. If you have a journey worth shipping, let’s talk.</p>
+        <p class="cta"><a class="btn" href="mailto:mohammedyaseenvm@gmail.com">Start a conversation ↗</a><a class="btn ghost" href="index.html">Back to portfolio</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="s-track" id="track" aria-hidden="true"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="story.js"></script>
+</body>
+</html>
