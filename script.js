@@ -234,7 +234,7 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
   const backMat=mk(THREE.BackSide,1),frontMat=mk(THREE.FrontSide,0);
   const group=new THREE.Group();
   group.add(new THREE.Mesh(geo,backMat),new THREE.Mesh(geo,frontMat));
-  group.scale.setScalar(1.14);
+  group.scale.setScalar(.9);
   scene.add(group);
 
   const resize=()=>{
