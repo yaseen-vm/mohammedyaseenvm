@@ -31,6 +31,19 @@ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches
 if(window.gsap && window.ScrollTrigger && !reduceMotion){
   gsap.registerPlugin(ScrollTrigger);
 
+  // Lenis smooth scroll, driven by GSAP's ticker so ScrollTrigger scrubs stay in sync.
+  if(window.Lenis){
+    const lenis=new Lenis({lerp:.09,smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href^="#"]');
+      const target=a&&a.getAttribute('href').length>1&&document.querySelector(a.getAttribute('href'));
+      if(target){ e.preventDefault(); lenis.scrollTo(target,{duration:1.6}); }
+    });
+  }
+
   // Split an element's text into per-character spans (spaces stay as breakable text nodes).
   const splitChars=(el,extraClass='')=>{
     const text=el.textContent;
@@ -109,6 +122,9 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
     scrollTrigger:{trigger:'.hero',start:'top top',end:'42% top',scrub:0.5},
   });
 
+  /* ---------- SELECTED WORK (pinned WebGL lens) — must be created before later pins ---------- */
+  initLens({splitChars});
+
   /* ---------- HORIZONTAL SCROLL (pinned Process strip) ---------- */
   // On desktop the section pins and its track translates sideways as you scroll
   // vertically. On touch / small screens we skip the pin and let it be a native
@@ -155,3 +171,89 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
     },
   });
 }
+
+/* ---- Hero glass blob (Three.js): translucent lavender body, indigo refracting edges ---- */
+(()=>{
+  const wrap=document.getElementById('hero-blob'),canvas=document.getElementById('blob');
+  if(!wrap||!canvas) return;
+  const fail=()=>wrap.classList.add('fallback');
+  if(!window.THREE) return fail();
+  let renderer;
+  try{ renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true}); }catch(err){ return fail(); }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.setClearColor(0x000000,0);
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(32,1,.1,50);
+  camera.position.z=6;
+
+  const vertex=`
+    uniform float uTime; varying vec3 vView; varying vec3 vP;
+    vec3 warp(vec3 p){
+      vec3 q=p*vec3(.8,1.3,.72);
+      float t=uTime*.35;
+      float d=.26*sin(q.x*2.1+t)*sin(q.y*1.7-t*.8)+.2*sin(q.z*2.6+q.x*1.4+t*.6)+.14*sin(q.y*3.1+q.z*2.2-t);
+      return q*(1.+d)+vec3(.18*sin(q.y*2.+t),0.,0.);
+    }
+    void main(){
+      vec3 p=warp(position); vP=p;
+      vec4 mv=modelViewMatrix*vec4(p,1.); vView=mv.xyz;
+      gl_Position=projectionMatrix*mv;
+    }`;
+  const fragment=`
+    varying vec3 vView; varying vec3 vP; uniform float uBack;
+    void main(){
+      vec3 n=normalize(cross(dFdx(vView),dFdy(vView)));
+      vec3 v=normalize(-vView);
+      if(dot(n,v)<0.) n=-n;
+      float ndv=clamp(dot(n,v),0.,1.);
+      float fres=pow(1.-ndv,2.0);
+      vec3 pink=vec3(.93,.82,.98), lav=vec3(.78,.72,.98), mid=vec3(.42,.28,.86), deep=vec3(.16,.09,.55);
+      vec3 base=mix(pink,lav,smoothstep(-.9,.9,vP.y));
+      vec3 col=mix(base,mid,smoothstep(.12,.6,fres));
+      col=mix(col,deep,smoothstep(.5,.92,fres));
+      vec3 L=normalize(vec3(-.45,.75,.6));
+      col+=vec3(1.)*pow(max(dot(reflect(-L,n),v),0.),60.)*.95;
+      col+=vec3(.8,.76,1.)*smoothstep(.5,.58,fres)*(1.-smoothstep(.58,.68,fres))*.4;
+      float a=mix(.5,.97,smoothstep(.08,.75,fres));
+      if(uBack>.5){ col*=.72; a*=.55; }
+      gl_FragColor=vec4(col,a);
+    }`;
+  const mk=(side,back)=>new THREE.ShaderMaterial({
+    vertexShader:vertex,fragmentShader:fragment,transparent:true,depthWrite:false,side,
+    extensions:{derivatives:true},
+    uniforms:{uTime:{value:0},uBack:{value:back}},
+  });
+  const geo=new THREE.IcosahedronGeometry(1,40);
+  const backMat=mk(THREE.BackSide,1),frontMat=mk(THREE.FrontSide,0);
+  const group=new THREE.Group();
+  group.add(new THREE.Mesh(geo,backMat),new THREE.Mesh(geo,frontMat));
+  group.scale.setScalar(1.14);
+  scene.add(group);
+
+  const resize=()=>{
+    const w=wrap.clientWidth,h=wrap.clientHeight;
+    if(!w||!h) return;
+    renderer.setSize(w,h,false);
+    camera.aspect=w/h; camera.updateProjectionMatrix();
+  };
+  resize(); window.addEventListener('resize',resize);
+
+  let mx=0,my=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  const still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let visible=true;
+  new IntersectionObserver(([e])=>{visible=e.isIntersecting}).observe(wrap);
+  const clock=new THREE.Clock();
+  const frame=()=>{
+    requestAnimationFrame(frame);
+    if(!visible&&!still) return;
+    const t=still?2:clock.getElapsedTime();
+    backMat.uniforms.uTime.value=frontMat.uniforms.uTime.value=t;
+    group.rotation.y+=((t*.12+mx*.9)-group.rotation.y)*.05;
+    group.rotation.x+=((-.25+my*.5)-group.rotation.x)*.05;
+    group.rotation.z=-.35;
+    group.position.y=-scrollY*.0006;
+    renderer.render(scene,camera);
+  };
+  frame();
+})();

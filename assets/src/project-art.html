@@ -1,0 +1,197 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Source for the project artwork. Render each .art (1400x1400) to assets/project-N.jpg. */
+*{box-sizing:border-box;margin:0}
+body{background:#888;font-family:Inter,Arial,sans-serif}
+.art{position:relative;width:1400px;height:1400px;overflow:hidden;margin:0 0 20px}
+.serif{font-family:'Bodoni Moda',Didot,serif}
+.mono{font-family:ui-monospace,Consolas,'Courier New',monospace}
+.abs{position:absolute}
+.chip{position:absolute;display:flex;align-items:center;gap:12px;padding:16px 22px;border-radius:999px;font-weight:600;font-size:24px;box-shadow:0 24px 50px -18px rgba(20,10,60,.45)}
+.dot{width:14px;height:14px;border-radius:50%}
+.win{position:absolute;border-radius:28px;overflow:hidden;box-shadow:0 60px 110px -30px rgba(20,10,60,.55),0 0 0 1.5px rgba(255,255,255,.35)}
+.bar{height:60px;display:flex;align-items:center;gap:10px;padding:0 24px}
+.bar i{width:14px;height:14px;border-radius:50%;display:block}
+
+/* ---------- 1 VITABLENDS ---------- */
+#a1{background:radial-gradient(900px 700px at 15% 10%,#ffd9b8,transparent 60%),radial-gradient(900px 800px at 95% 90%,#b9f0d2,transparent 60%),linear-gradient(160deg,#fff3e6,#e6f7ee)}
+#a1 .win{left:200px;top:230px;width:1000px;height:840px;background:#fffdf9;transform:rotate(-3deg)}
+#a1 .bar{background:#f4ede4}#a1 .bar i:nth-child(1){background:#ff8f7a}#a1 .bar i:nth-child(2){background:#ffcf6a}#a1 .bar i:nth-child(3){background:#7ad59a}
+#a1 .url{margin-left:24px;flex:1;height:34px;border-radius:17px;background:#fff;font:500 18px/34px Inter;color:#8a7f72;padding-left:18px}
+#a1 .nav{display:flex;justify-content:space-between;align-items:center;padding:26px 44px;font-weight:700;font-size:22px;color:#1d3a2b}
+#a1 .nav span{font-weight:500;color:#6b7d72;margin-left:28px}
+#a1 .hero{display:flex;padding:10px 44px}
+#a1 h1{font:600 84px/.98 'Bodoni Moda',serif;color:#173a28;letter-spacing:-2px;margin-top:34px}
+#a1 h1 em{color:#e07a3f;font-style:italic}
+#a1 .btn{display:inline-block;margin-top:34px;padding:20px 34px;border-radius:999px;background:#173a28;color:#fff;font-weight:600;font-size:22px}
+#a1 .bottle{position:absolute;right:92px;top:150px;width:210px;height:420px;border-radius:70px 70px 40px 40px;background:linear-gradient(100deg,#2f9e63,#8fe3a8 45%,#2f9e63);box-shadow:inset -18px 0 30px rgba(0,0,0,.14),0 40px 60px -20px rgba(23,58,40,.4)}
+#a1 .bottle::before{content:'';position:absolute;left:50px;top:-52px;width:110px;height:64px;border-radius:18px 18px 6px 6px;background:#173a28}
+#a1 .bottle::after{content:'VITA\A BLEND';white-space:pre;position:absolute;left:28px;right:28px;top:140px;padding:38px 0;border-radius:22px;background:#fffdf9;text-align:center;font:800 28px/1.15 Inter;color:#173a28;letter-spacing:2px}
+#a1 .cards{position:absolute;left:44px;right:44px;bottom:36px;display:flex;gap:22px}
+#a1 .card{flex:1;border-radius:24px;padding:20px;background:#f6efe5;display:flex;flex-direction:column;gap:12px;font-weight:600;color:#173a28;font-size:21px}
+#a1 .card .o{height:112px;border-radius:18px}
+#a1 .card small{font-weight:500;color:#7b8a80;font-size:17px}
+#a1 .c1{left:130px;top:150px;background:#7c4dff;color:#fff}
+#a1 .c2{right:100px;top:360px;background:#fff;color:#173a28}
+#a1 .c3{left:150px;bottom:150px;background:#173a28;color:#d8ffe6}
+#a1 .c4{right:170px;bottom:210px;background:#ff8a4c;color:#fff}
+
+/* ---------- 2 CORTEX ---------- */
+#a2{background:radial-gradient(900px 800px at 80% 12%,#5a35c8,transparent 62%),radial-gradient(800px 800px at 8% 95%,#2a58d8,transparent 60%),linear-gradient(150deg,#0e0a22,#20124a)}
+#a2:before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/70px 70px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/70px 70px}
+#a2 .win{left:190px;top:260px;width:1020px;height:800px;background:#120d2b;box-shadow:0 60px 120px -30px #000,0 0 0 1.5px rgba(160,130,255,.4)}
+#a2 .bar{background:#1a1340;border-bottom:1px solid rgba(255,255,255,.08)}#a2 .bar i{background:#3b2f80}
+#a2 .tab{margin-left:22px;font:500 20px ui-monospace,Consolas,monospace;color:#b9a8ff}
+#a2 .code{padding:26px 0;font:500 25px/48px ui-monospace,Consolas,'Courier New',monospace;color:#cfc6ff}
+#a2 .ln{display:flex;padding:0 34px;white-space:pre}
+#a2 .ln b{width:56px;color:#5c4ea8;font-weight:400}
+#a2 .del{background:rgba(255,92,120,.16);color:#ffb3c2}#a2 .add{background:rgba(70,230,160,.15);color:#a5f5d0}
+#a2 .k{color:#c59bff}#a2 .f{color:#7ed1ff}#a2 .s{color:#ffd48a}
+#a2 .bubble{position:absolute;left:300px;top:590px;width:760px;padding:30px 34px;border-radius:26px;background:linear-gradient(135deg,#7c4dff,#4a2fd0);color:#fff;box-shadow:0 40px 80px -20px rgba(70,40,200,.75)}
+#a2 .bubble h4{font:700 22px Inter;letter-spacing:.12em;text-transform:uppercase;color:#d9ccff;display:flex;gap:12px;align-items:center}
+#a2 .bubble p{font:500 29px/1.4 Inter;margin-top:14px}
+#a2 .bubble .brow{display:flex;gap:16px;margin-top:22px}
+#a2 .pill{padding:14px 24px;border-radius:999px;font:700 21px Inter}
+#a2 .agent{background:rgba(20,12,60,.85);color:#e3dbff;border:1.5px solid rgba(180,150,255,.5);backdrop-filter:blur(6px)}
+#a2 svg.flow{position:absolute;left:0;top:0;width:1400px;height:1400px}
+
+/* ---------- 3 ZEKE LA HOLIDAYS ---------- */
+#a3{background:radial-gradient(900px 800px at 10% 10%,#ffd0b0,transparent 60%),radial-gradient(900px 800px at 95% 95%,#ffb1c9,transparent 60%),linear-gradient(160deg,#fff0e3,#ffe0ea)}
+#a3 .arch{position:absolute;left:380px;top:150px;width:640px;height:1000px;border-radius:320px 320px 36px 36px;overflow:hidden;background:linear-gradient(#5b4bd8 0%,#d86bb0 38%,#ffb27a 62%,#ffe2a8 74%);box-shadow:0 60px 110px -30px rgba(120,40,100,.55),0 0 0 10px rgba(255,255,255,.7)}
+#a3 .sun{position:absolute;left:210px;top:440px;width:220px;height:220px;border-radius:50%;background:radial-gradient(#fff6d0,#ffd070);box-shadow:0 0 120px 60px rgba(255,214,140,.7)}
+#a3 .m{position:absolute;bottom:250px;left:-60px;right:-60px;height:300px;background:#7a3d9c;clip-path:polygon(0 100%,0 62%,18% 30%,30% 56%,48% 6%,66% 52%,80% 26%,100% 58%,100% 100%)}
+#a3 .m2{bottom:230px;background:#4b2a86;height:240px;clip-path:polygon(0 100%,0 50%,14% 60%,34% 20%,54% 62%,74% 30%,100% 64%,100% 100%)}
+#a3 .sea{position:absolute;left:0;right:0;bottom:0;height:290px;background:linear-gradient(#ffc08a,#e8718e 40%,#4b2a86)}
+#a3 .sea i{position:absolute;left:50%;height:6px;border-radius:3px;background:rgba(255,240,200,.75);transform:translateX(-50%)}
+#a3 .book{position:absolute;left:200px;bottom:170px;width:520px;padding:32px 36px;border-radius:30px;background:rgba(255,255,255,.96);box-shadow:0 40px 80px -24px rgba(120,40,100,.5)}
+#a3 .book small{font:600 19px Inter;letter-spacing:.14em;color:#b05a88;text-transform:uppercase}
+#a3 .book h3{font:600 54px/1 'Bodoni Moda',serif;color:#2a1650;margin:10px 0 18px}
+#a3 .book .r{display:flex;justify-content:space-between;align-items:center;font:600 24px Inter;color:#2a1650}
+#a3 .book .go{padding:16px 28px;border-radius:999px;background:#2a1650;color:#fff;font:700 21px Inter}
+#a3 .cms{right:170px;top:290px;background:#2a1650;color:#fff}
+#a3 .t1{right:140px;bottom:300px;background:#fff;color:#2a1650}
+#a3 .t2{left:140px;top:290px;background:#ff6fa0;color:#fff}
+
+/* ---------- 4 HOOR AL BAHR ---------- */
+#a4{background:radial-gradient(900px 800px at 85% 15%,#1f6a78,transparent 60%),radial-gradient(900px 700px at 5% 95%,#0d3f4a,transparent 60%),linear-gradient(150deg,#071d25,#0c3340)}
+#a4:before{content:'';position:absolute;inset:0;opacity:.18;background:repeating-linear-gradient(45deg,#d9b068 0 1px,transparent 1px 46px),repeating-linear-gradient(-45deg,#d9b068 0 1px,transparent 1px 46px)}
+#a4 .plate{position:absolute;left:360px;top:260px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e9e4da 55%,#cfc7b8);box-shadow:0 70px 110px -30px #000,inset 0 0 0 28px rgba(0,0,0,.04)}
+#a4 .plate:before{content:'';position:absolute;inset:80px;border-radius:50%;border:2px solid #d9b068;opacity:.7}
+#a4 .fish{position:absolute;left:150px;top:250px;width:380px;height:170px;border-radius:50% 80% 80% 50%/60% 60% 40% 40%;background:linear-gradient(160deg,#f0a35a,#c4622d);transform:rotate(-14deg);box-shadow:0 22px 30px -12px rgba(0,0,0,.45)}
+#a4 .fish:after{content:'';position:absolute;inset:26px 40px;border-radius:50%;background:repeating-linear-gradient(100deg,rgba(255,255,255,.28) 0 5px,transparent 5px 24px)}
+#a4 .herb{position:absolute;width:96px;height:96px;border-radius:50% 0 50% 0;background:linear-gradient(135deg,#6dbb6a,#2d7a3f)}
+#a4 .lem{position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(#fff3a8 30%,#f4d233 31%,#e8b500);box-shadow:0 14px 20px -8px rgba(0,0,0,.4)}
+#a4 .menu{position:absolute;left:150px;top:900px;width:560px;padding:34px 40px;border-radius:28px;background:#f8f1e1;color:#1a2c30;box-shadow:0 50px 90px -26px #000}
+#a4 .menu h3{font:600 46px 'Bodoni Moda',serif;color:#8a6a2c;margin-bottom:14px}
+#a4 .menu .i{display:flex;justify-content:space-between;font:600 24px Inter;padding:12px 0;border-top:1px dashed rgba(26,44,48,.3)}
+#a4 .dash{position:absolute;right:130px;top:620px;width:470px;padding:28px 32px;border-radius:26px;background:rgba(255,255,255,.96);box-shadow:0 50px 90px -26px #000;color:#0c3340}
+#a4 .dash small{font:700 17px Inter;letter-spacing:.14em;text-transform:uppercase;color:#8a6a2c}
+#a4 .dash .r{display:flex;justify-content:space-between;align-items:center;font:600 22px Inter;padding:14px 0;border-top:1px solid #e5eaec}
+#a4 .ok{padding:8px 16px;border-radius:999px;background:#d8f5e2;color:#1b7a43;font-size:17px}
+#a4 .ph{background:#fff1cc;color:#8a6a2c}
+#a4 .badge{left:760px;top:170px;background:#d9b068;color:#0c3340}
+
+/* ---------- 5 VITABLENDS APP ---------- */
+#a5{background:radial-gradient(900px 800px at 12% 12%,#c9b6ff,transparent 60%),radial-gradient(900px 800px at 92% 92%,#9ee8ff,transparent 60%),linear-gradient(160deg,#f1ebff,#e0f5ff)}
+.phone{position:absolute;border-radius:64px;background:#14102a;padding:16px;box-shadow:0 70px 120px -30px rgba(40,20,120,.6),0 0 0 2px rgba(255,255,255,.4)}
+.screen{width:100%;height:100%;border-radius:50px;overflow:hidden;background:#fbf9ff;position:relative}
+.notch{position:absolute;left:50%;top:14px;width:130px;height:34px;margin-left:-65px;border-radius:20px;background:#14102a;z-index:3}
+#a5 .p1{left:470px;top:190px;width:460px;height:940px;transform:rotate(3deg);z-index:2}
+#a5 .p2{left:170px;top:300px;width:400px;height:820px;transform:rotate(-9deg)}
+#a5 .p3{left:830px;top:340px;width:400px;height:820px;transform:rotate(8deg)}
+.hd{padding:84px 30px 14px;font:700 34px Inter;color:#1c1440}.hd small{display:block;font:500 20px Inter;color:#8a7fb5;margin-bottom:6px}
+.sr{margin:8px 30px 18px;height:54px;border-radius:27px;background:#efe9ff}
+.row{display:flex;align-items:center;gap:18px;margin:0 30px 16px;padding:16px;border-radius:24px;background:#fff;box-shadow:0 12px 30px -14px rgba(60,30,160,.3)}
+.row .o{width:78px;height:78px;border-radius:20px;flex:none}
+.row b{display:block;font:700 22px Inter;color:#1c1440}.row span{font:500 18px Inter;color:#8a7fb5}
+.row em{margin-left:auto;font:800 21px Inter;color:#6a3df0;font-style:normal}
+.tabbar{position:absolute;left:24px;right:24px;bottom:26px;height:84px;border-radius:42px;background:#1c1440;display:flex;justify-content:space-around;align-items:center}
+.tabbar i{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.35)}.tabbar i:first-child{background:#b79cff}
+.big{margin:90px 36px 20px;height:300px;border-radius:44px}
+#a5 .fl{left:690px;top:90px;background:#1c1440;color:#fff}
+#a5 .pv{left:90px;bottom:200px;background:#fff;color:#1c1440}
+</style></head><body>
+
+<!-- 1 -->
+<div class="art" id="a1">
+  <div class="win">
+    <div class="bar"><i></i><i></i><i></i><div class="url">vividvitablends.com / shop</div></div>
+    <div class="nav"><div>VitaBlends<span>Shop</span><span>Rituals</span><span>Journal</span></div><div>Cart (2)</div></div>
+    <div class="hero"><div><h1>Blend your<br>best <em>day.</em></h1><div class="btn">Shop the blends →</div></div></div>
+    <div class="bottle"></div>
+    <div class="cards">
+      <div class="card"><div class="o" style="background:linear-gradient(135deg,#ffb27a,#ff7a59)"></div>Sunrise Citrus<small>Vitamin C · ₹ 499</small></div>
+      <div class="card"><div class="o" style="background:linear-gradient(135deg,#9be8b4,#34a56a)"></div>Green Reset<small>Greens · ₹ 649</small></div>
+      <div class="card"><div class="o" style="background:linear-gradient(135deg,#d6c2ff,#8a5cf0)"></div>Calm Berry<small>Sleep · ₹ 549</small></div>
+    </div>
+  </div>
+  <div class="chip c1 mono"><span class="dot" style="background:#7dffb0"></span>REDIS · cache HIT · 3 ms</div>
+  <div class="chip c2"><span class="dot" style="background:#7c4dff"></span>JWT · session valid</div>
+  <div class="chip c3 mono"><span class="dot" style="background:#7dffb0"></span>PostgreSQL · 0 slow queries</div>
+  <div class="chip c4">+128% repeat orders</div>
+</div>
+
+<!-- 2 -->
+<div class="art" id="a2">
+  <svg class="flow" viewBox="0 0 1400 1400"><path d="M200 1160 C 330 1260, 520 1280, 660 1210" fill="none" stroke="#b79cff" stroke-width="3" stroke-dasharray="3 12" stroke-linecap="round"/><path d="M780 1210 C 900 1270, 1060 1250, 1180 1160" fill="none" stroke="#b79cff" stroke-width="3" stroke-dasharray="3 12" stroke-linecap="round"/></svg>
+  <div class="win">
+    <div class="bar"><i></i><i></i><i></i><span class="tab">api/auth/session.py — pull request #42</span></div>
+    <div class="code">
+      <div class="ln"><b>18</b><span><span class="k">def</span> <span class="f">refresh_token</span>(user, token):</span></div>
+      <div class="ln del"><b>19</b><span>    if token == user.last_token:</span></div>
+      <div class="ln del"><b>20</b><span>        return <span class="f">issue</span>(user)</span></div>
+      <div class="ln add"><b>19</b><span>    if <span class="f">is_revoked</span>(token):</span></div>
+      <div class="ln add"><b>20</b><span>        <span class="k">raise</span> <span class="f">AuthError</span>(<span class="s">"reused"</span>)</span></div>
+      <div class="ln"><b>21</b><span>    <span class="k">return</span> <span class="f">issue</span>(user, rotate=<span class="k">True</span>)</span></div>
+      <div class="ln"><b>22</b><span></span></div>
+      <div class="ln"><b>23</b><span><span class="k">async def</span> <span class="f">logout</span>(request):</span></div>
+      <div class="ln"><b>24</b><span>    <span class="k">await</span> cache.<span class="f">delete</span>(request.sid)</span></div>
+    </div>
+  </div>
+  <div class="bubble"><h4><span class="dot" style="background:#7dffb0"></span>Cortex · review agent</h4><p>Refresh tokens can be replayed after rotation. I drafted a fix that revokes reused tokens.</p><div class="brow"><span class="pill" style="background:#fff;color:#3b1fb0">Open fix PR ↗</span><span class="pill" style="background:rgba(255,255,255,.18)">3 checks passed</span></div></div>
+  <div class="chip agent mono" style="left:90px;top:1120px">REVIEWER</div>
+  <div class="chip agent mono" style="left:600px;top:1180px">FIXER</div>
+  <div class="chip agent mono" style="left:1090px;top:1120px">PR #43</div>
+  <div class="chip agent mono" style="right:130px;top:160px;color:#7dffb0">FastAPI · LangGraph · CrewAI</div>
+</div>
+
+<!-- 3 -->
+<div class="art" id="a3">
+  <div class="arch"><div class="sun"></div><div class="m"></div><div class="m m2"></div><div class="sea"><i style="top:40px;width:260px"></i><i style="top:78px;width:180px"></i><i style="top:120px;width:300px"></i><i style="top:166px;width:140px"></i><i style="top:210px;width:240px"></i></div></div>
+  <div class="book"><small>Featured escape</small><h3>Maldives</h3><div class="r"><div>5 nights · ₹ 62,400</div><div class="go">Book now →</div></div></div>
+  <div class="chip cms mono">ADMIN CMS · published ✓</div>
+  <div class="chip t1"><span class="dot" style="background:#ff6fa0"></span>Cloudflare Workers · 38 ms</div>
+  <div class="chip t2">✈ 12 new bookings</div>
+</div>
+
+<!-- 4 -->
+<div class="art" id="a4">
+  <div class="plate"><div class="fish"></div></div>
+  <div class="herb" style="left:760px;top:330px;transform:rotate(20deg)"></div><div class="herb" style="left:830px;top:410px;width:70px;height:70px;transform:rotate(80deg)"></div>
+  <div class="lem" style="left:800px;top:640px"></div><div class="lem" style="left:420px;top:720px;width:90px;height:90px"></div>
+  <div class="menu"><h3>Today's catch</h3><div class="i"><span>Grilled Hamour</span><span>48</span></div><div class="i"><span>Prawn Machboos</span><span>56</span></div><div class="i"><span>Saffron Rice</span><span>22</span></div></div>
+  <div class="dash"><small>Reservations · tonight</small><div class="r"><span>7:30 PM · Table 4</span><span class="ok">Confirmed</span></div><div class="r"><span>8:00 PM · Table 9</span><span class="ok ph">Pending</span></div><div class="r"><span>8:45 PM · Table 2</span><span class="ok">Confirmed</span></div></div>
+  <div class="chip badge mono">FLASK · SQLITE · DOCKER</div>
+</div>
+
+<!-- 5 -->
+<div class="art" id="a5">
+  <div class="phone p2"><div class="screen"><div class="notch"></div><div class="hd"><small>Orders</small>Your rituals</div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#ffb27a,#ff7a59)"></div><div><b>Sunrise</b><span>Delivered</span></div></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#9be8b4,#34a56a)"></div><div><b>Green Reset</b><span>On the way</span></div></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#d6c2ff,#8a5cf0)"></div><div><b>Calm Berry</b><span>Packed</span></div></div>
+    <div class="tabbar"><i></i><i></i><i></i><i></i></div></div></div>
+  <div class="phone p3"><div class="screen"><div class="notch"></div><div class="big" style="background:linear-gradient(135deg,#d6c2ff,#8a5cf0)"></div><div class="hd" style="padding-top:0">Calm Berry<small style="margin-top:6px">Sleep &amp; recovery · ₹ 549</small></div><div class="row" style="justify-content:center;background:#6a3df0"><b style="color:#fff">Add to cart</b></div><div class="tabbar"><i></i><i></i><i></i><i></i></div></div></div>
+  <div class="phone p1"><div class="screen"><div class="notch"></div><div class="hd"><small>Good morning, Yaseen</small>Blends for you</div><div class="sr"></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#ffb27a,#ff7a59)"></div><div><b>Sunrise Citrus</b><span>Vitamin C</span></div><em>₹499</em></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#9be8b4,#34a56a)"></div><div><b>Green Reset</b><span>Greens</span></div><em>₹649</em></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#d6c2ff,#8a5cf0)"></div><div><b>Calm Berry</b><span>Sleep</span></div><em>₹549</em></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#ffe08a,#f2a900)"></div><div><b>Golden Glow</b><span>Turmeric</span></div><em>₹599</em></div>
+    <div class="row"><div class="o" style="background:linear-gradient(135deg,#9ee8ff,#3aa0e8)"></div><div><b>Hydra Mint</b><span>Electrolytes</span></div><em>₹449</em></div>
+    <div class="tabbar"><i></i><i></i><i></i><i></i></div></div></div>
+  <div class="chip fl mono">FLUTTER · PROVIDER · REST</div>
+  <div class="chip pv"><span class="dot" style="background:#6a3df0"></span>Synced with the API</div>
+</div>
+</body></html>
