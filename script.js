@@ -97,15 +97,22 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
   });
 
   // Intro: characters assemble out of scattered 3D space and snap into the words.
-  assembleIn(titleChars,{stagger:0.055,duration:1.5,delay:0.3,from:'random',spread:1});
+  const titleIntro=assembleIn(titleChars,{stagger:0.055,duration:1.5,delay:0.3,from:'random',spread:1});
 
   // Scroll-driven exit: as the hero scrolls away, each character flies up, tilts and fades.
-  gsap.to(titleChars,{
-    yPercent:-170,opacity:0,rotateX:75,
-    ease:'none',immediateRender:false,
-    stagger:{each:0.02,from:'start'},
-    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:0.6},
-  });
+  // Explicit start values mean scrolling back to the top always restores the finished title,
+  // and scrolling mid-intro finishes the intro first so the two tweens never fight over a letter.
+  gsap.fromTo(titleChars,
+    {yPercent:0,opacity:1,rotateX:0},
+    {
+      yPercent:-170,opacity:0,rotateX:75,
+      ease:'none',immediateRender:false,
+      stagger:{each:0.02,from:'start'},
+      scrollTrigger:{
+        trigger:'.hero',start:'top top',end:'bottom top',scrub:0.6,
+        onUpdate:()=>{ if(titleIntro.progress()<1) titleIntro.progress(1); },
+      },
+    });
 
   /* ---------- HERO META (role / location / availability) ---------- */
   const metaChars=[];
